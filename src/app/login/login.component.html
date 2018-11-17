@@ -5,7 +5,7 @@
             <h4 align="center"><strong>ERP Login</strong></h4>
             <br>
 
-            <form class="form-signin" (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit(loginForm)" #loginForm = "ngForm">
 
                 <div class="form-group">
                     <input type="text" ngModel name="netId" id="inputNetId" class="form-control" placeholder="Enter Net ID" required autofocus #inputNetId = "ngModel">                       
@@ -23,22 +23,22 @@
 
                 <div class="form-group">
                       <div class="radio">
-                        <input id="admin" name="user" type="radio">
-                        <label for="admin" class="radio-label radio-inline">Admin</label>
+                        <input id="admin" name="user" type="radio" value="admin" required ngModel checked>
+                        <label for="admin" class="radio-label">Admin</label>
                       </div>
                     
                       <div class="radio">
-                        <input id="faculty" name="user" type="radio">
-                        <label  for="faculty" class="radio-label radio-inline">Faculty</label>
+                        <input id="faculty" name="user" type="radio" value="faculty" required ngModel>
+                        <label  for="faculty" class="radio-label">Faculty</label>
                       </div>
                     
                       <div class="radio">
-                        <input id="student" name="user" type="radio" checked>
-                        <label for="student" class="radio-label radio-inline">Student</label>
+                        <input id="student" name="user" type="radio" value="student" required ngModel>
+                        <label for="student" class="radio-label">Student</label>
                       </div>
                 </div>
 
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-            </form><!-- /form -->
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" [disabled] = "!loginForm.valid">Sign in</button>                
+                </form><!-- /form -->
         </div><!-- /card-container -->
 </div><!-- /container -->

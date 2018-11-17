@@ -1,11 +1,13 @@
+import { AdminComponent } from './admin/admin.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [{
-  path: 'login', component: LoginComponent
-}
+const routes: Routes = [
+  {path: '', component: LoginComponent},  
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', component: AdminComponent},
 ];
 
 @NgModule({
