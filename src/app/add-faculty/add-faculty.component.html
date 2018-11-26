@@ -1,0 +1,68 @@
+<div class="col-md-12 offset-md-2">
+  <form (ngSubmit)="addFaculty(addFacultyForm)" #addFacultyForm="ngForm">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputFacultyName">Enter name</label>
+        <input type="text" ngModel name="name" id="inputFacultyName" class="form-control" required autofocus
+          #inputFacultyName="ngModel">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputSNUId">Enter SNU ID</label>
+        <input type="text" ngModel id="inputSNUId" class="form-control" required name="snuId" #inputSNUId="ngModel">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputNetId">Enter net ID</label>
+        <input type="text" ngModel id="inputNetId" class="form-control" required name="netId" #inputNetId="ngModel">
+      </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputMobileNumber">Enter mobile number</label>
+          <input type="text" ngModel name="mobileNumber" id="inputMobileNumber" class="form-control" maxlength="10" required autofocus
+            #inputMobileNumber="ngModel">
+        </div>
+  
+        <div class="form-group col-md-6"> 
+          <label for="inputDateOfBirth">Enter Date Of Birth</label>
+          <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dateOfBirth" ngModel ngbDatepicker #inputDatePicker="ngbDatepicker" required [minDate] = "{year: 1950, month: 1, day: 1}">
+              <button class="btn" type="button" (click)="inputDatePicker.toggle()">
+                  <span class="fa fa-calendar" aria-hidden="true"></span>
+              </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+            <label for="inputAddress">Enter address</label>
+            <textarea class="form-control" id="inputAddress" rows="3" ngModel name="address" required #inputAddress="ngModel"></textarea>
+          </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputDepartment">Select Department</label>
+            <select ngModel class="form-control" id="inputDepartment" name="department" required #inputDepartment = "ngModel">
+              <option *ngFor="let department of allDepartments" value="{{ department.departmentId }}">{{ department.departmentName }}</option>
+            </select>
+        </div>       
+        
+        <div class="form-group col-md-6">
+            <label for="inputPassword">Enter account password</label>
+            <input type="text" ngModel id="inputPassword" class="form-control" required name="password" #inputPassword="ngModel">
+          </div>            
+    </div>
+
+    <div *ngIf="status==='failure'" class="form-group alert alert-danger col-md-12 text-center">
+      Couldn't add faculty
+    </div>
+
+    <button class="btn btn-lg btn-success" type="submit" [disabled]="!addFacultyForm.valid">Add Faculty</button>
+  </form>
+</div>

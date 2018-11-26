@@ -1,0 +1,24 @@
+<div class="form-row">
+    <div class="col-lg-12">
+        <table class="table table-bordered table-striped table-responsive" style="width: 812px; border-width: 5px;">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Course code</th>
+              <th scope="col" class="text-center">Course name</th>
+              <th scope="col" class="text-center">Faculty name</th>
+              <th scope="col" class="text-center">Room number</th>
+              <th scope="col" class="text-center">Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let courseDetail of studentCourseEnrollment">
+              <th class="text-center" scope="row">{{ courseDetail.courseEnrollment.course.courseCode }}</th>
+              <td>{{ courseDetail.courseEnrollment.course.courseName }}</td>
+              <td class="text-center">{{ courseDetail.courseEnrollment.faculty.name }}</td>
+              <td class="text-center">{{ courseDetail.courseEnrollment.location }}</td>
+              <td class="text-center">{{ courseDetail.courseEnrollment.course.credits }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>

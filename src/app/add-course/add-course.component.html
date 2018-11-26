@@ -1,0 +1,56 @@
+<div class="col-md-12 offset-md-2">
+  <form (ngSubmit)="addCourse(addCourseForm)" #addCourseForm="ngForm">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputDepartment">Select Department</label>
+        <select ngModel class="form-control" id="inputDepartment" name="department" required #inputDepartment="ngModel" (change)="departmentSelected($event.target.value)">
+          <option *ngFor="let department of allDepartments" value="{{ department.departmentId }}">{{
+            department.departmentName }}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputCourse">Select course to be offered</label>
+        <select ngModel class="form-control" id="inputCourse" name="course" required #inputCourse="ngModel">
+          <option *ngFor="let course of allCourses" value="{{ course.courseCode }}">{{ course.courseName }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputSeason">Select season</label>
+        <select class="form-control" ngModel id="inputSeason" name="season" required #inputSeason="ngModel">
+          <option>Monsoon</option>
+          <option>Spring</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputYear">Enter year</label>
+        <input type="text" ngModel id="inputYear" class="form-control" required name="year" #inputYear="ngModel">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputLocation">Enter room number</label>
+        <input type="text" ngModel id="inputLocation" class="form-control" required name="location" #inputLocation="ngModel">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputFaculty">Select faculty</label>
+        <select ngModel class="form-control" id="inputFaculty" name="faculty" required #inputFaculty="ngModel">
+          <option *ngFor="let faculty of allFaculties" value="{{ faculty.snuId }}">{{ faculty.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="status==='failure'" class="form-group alert alert-danger">
+      Couldn't offer course
+    </div>
+
+    <button class="btn btn-lg btn-success" type="submit" [disabled]="!addCourseForm.valid">Offer Course</button>
+  </form><!-- /form -->
+</div>

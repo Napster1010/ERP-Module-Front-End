@@ -1,0 +1,20 @@
+<div class="col-md-6 offset-md-2">
+        <form (ngSubmit)="addSchool(addSchoolForm)" #addSchoolForm = "ngForm">
+
+                <div class="form-group">
+                    <label for="inputSchoolId">Enter school ID</label>
+                    <input type="text" ngModel name="schoolId" id="inputSchoolId" class="form-control" placeholder='for example  "sch001" ' required autofocus #inputSchoolId = "ngModel">                       
+                </div>
+        
+                <div class="form-group">
+                     <label for="inputSchoolName">Enter school Name</label>
+                    <input type="text"ngModel id="inputSchoolName" class="form-control" required name="schoolName" #inputSchoolName = "ngModel">
+                </div>
+
+                <div *ngIf="status==='failure'" class="form-group alert alert-danger">  
+                        Couldn't add school
+                </div>
+              
+                <button class="btn btn-lg btn-success" type="submit" [disabled] = "!addSchoolForm.valid">Add School</button>                
+         </form><!-- /form -->
+</div>

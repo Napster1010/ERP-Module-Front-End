@@ -1,7 +1,7 @@
 <div class="container">
         <div class="card card-container border-secondary mb-3" style="border-width:2px;">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <img id="profile-img" class="profile-img-card" src="//www.skemoney.com/Login_Images/login22.png" />
+            <img id="profile-img" class="profile-img-card" src="../assets/login.png" />
             <h4 align="center"><strong>ERP Login</strong></h4>
             <br>
 
@@ -38,6 +38,10 @@
                       </div>
                 </div>
 
+                <div *ngIf="wrongCredentials" class="form-group alert alert-danger">  
+                        <strong>Wrong Credentials entered!</strong>
+                </div>
+              
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" [disabled] = "!loginForm.valid">Sign in</button>                
                 </form><!-- /form -->
         </div><!-- /card-container -->

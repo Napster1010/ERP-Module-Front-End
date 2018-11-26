@@ -1,16 +1,17 @@
-import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../services/auth-service/authentication.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   submitted = false;
   loading = false;
+  wrongCredentials = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +34,20 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(loginForm.value['netId'], loginForm.value['password'], loginForm.value['user'])
             .subscribe(
                 data => {
-                  console.log(data);
+                  if(data==true){
+                    console.log("Login Successful");        
+                    this.wrongCredentials = false;
+                    this.router.navigate(['']);            
+                    let user = {
+                      netId: loginForm.value['netId'],
+                      userType: loginForm.value['user']
+                    }
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                  }
+                  else{ 
+                    console.log("Wrong Credentials");
+                    this.wrongCredentials = true;
+                  }
                 },
                 error => {
                   console.log(error);

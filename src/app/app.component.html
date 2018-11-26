@@ -1,1 +1,66 @@
-<router-outlet></router-outlet>
+<navbar *ngIf="currentUser()"></navbar>
+<div class="row">
+        <div class="col-md-3">
+                <ul class="list-group" *ngIf="currentUser()">
+                        <!--Admin links-->
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/add-school"
+                                (click)="linkChanged('addSchool')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='addSchool'">Add school</a>
+
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/add-department"
+                                (click)="linkChanged('addDepartment')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='addDepartment'">Add department</a>
+
+                        <!--add new course-->
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/offer-course"
+                                (click)="linkChanged('offerCourse')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='offerCourse'">Add new course</a>
+
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/add-faculty"
+                                (click)="linkChanged('addFaculty')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='addFaculty'">Add faculty</a>
+
+                        <!--offer course-->
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/add-course"
+                                (click)="linkChanged('addCourse')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='addCourse'">Offer course</a>
+
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/start-course-enrollment"
+                                (click)="linkChanged('startCourseEnrollment')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='startCourseEnrollment'">Schedule enrollment</a>
+
+                        <a *ngIf="currentUser().userType==='admin'" class="btn list-group-item" routerLink="/add-student"
+                                (click)="linkChanged('addStudent')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='addStudent'">Add Student</a>
+
+                        <!--Student links-->
+                        <a *ngIf="currentUser().userType==='student'" class="btn list-group-item" routerLink="/student-course-enrollment"
+                                (click)="linkChanged('courseEnrollment')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='courseEnrollment'">Course enrollment</a>
+
+                        <a *ngIf="currentUser().userType==='student'" class="btn list-group-item" routerLink="/my-courses"
+                                (click)="linkChanged('myCourses')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='myCourses'">My courses</a>
+
+                        <a *ngIf="currentUser().userType==='student'" class="btn list-group-item" routerLink="/"
+                                (click)="linkChanged('discussionForum')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='discussionForum'">Discussion forum</a>
+
+
+                        <a *ngIf="currentUser().userType==='student'" class="btn list-group-item" routerLink="/"
+                                (click)="linkChanged('review')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='review'">Review</a>
+
+                        <a *ngIf="currentUser().userType==='student'" class="btn list-group-item" routerLink="/"
+                                (click)="linkChanged('myGrades')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='myGrades'">My Grades</a>
+
+                        <a *ngIf="currentUser().userType==='student'" class="btn list-group-item" routerLink="/"
+                                (click)="linkChanged('viewProfile')" class="list-group-item list-group-item-action"
+                                [class.active]="currentLink==='viewProfile'">View profile</a>
+                </ul>
+        </div>
+        <div class="col-md-6">
+                <router-outlet></router-outlet>
+        </div>
+</div>

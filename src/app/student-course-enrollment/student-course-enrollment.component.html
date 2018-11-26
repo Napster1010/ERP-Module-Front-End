@@ -1,0 +1,47 @@
+<div class="col-md-12 offset-md-2">
+  <form (ngSubmit)="addCourseEnrollment(addStudentCourseEnrollmentForm)" #addStudentCourseEnrollmentForm="ngForm">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputDepartment">Select Department</label>
+        <select ngModel class="form-control" id="inputDepartment" name="department" required #inputDepartment="ngModel"
+          (change)="departmentSelected($event.target.value)">
+          <option *ngFor="let department of allDepartments" value="{{ department.departmentId }}">{{
+            department.departmentName }}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputCourse">Select course</label>
+        <select ngModel class="form-control" id="inputCourse" name="course" required #inputCourse="ngModel">
+          <option *ngFor="let course of allCourses" value="{{ course.courseCode }}">{{
+            course.courseName }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputSeason">Select season</label>
+        <select class="form-control" ngModel id="inputSeason" name="season" required #inputSeason="ngModel">
+          <option>Monsoon</option>
+          <option>Spring</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputYear">Select year</label>
+        <select class="form-control" ngModel id="inputYear" name="year" required #inputYear="ngModel">
+          <option>2018</option>
+          <option>2019</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="status==='failure'" class="form-group alert alert-danger text-center">
+      Couldn't enroll in the course
+    </div>
+
+    <button class="btn btn-lg btn-success" type="submit" [disabled]="!addStudentCourseEnrollmentForm.valid">Enroll</button>
+  </form><!-- /form -->
+</div>
